@@ -36,6 +36,8 @@ The PSVITA port currently supports **USA** and **EU**.
 > (yes, there is no audio yet.)
 > 
 > it works on Vita3k and runs better there.
+>
+> The game is not PLAYABLE and have visual glitches (the main one is the lack of logo on the title screen)
 
 ![alt text](https://github.com/Gustavo3211/tmc-vita/blob/master/readme-images/running.png "PSVITA")
 
