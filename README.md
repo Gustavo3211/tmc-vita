@@ -37,6 +37,10 @@ The PSVITA port currently supports **USA** and **EU**.
 > 
 > it works on Vita3k and runs better there.
 
+![alt text](https://github.com/Gustavo3211/tmc-vita/blob/master/readme-images/running.png "PSVITA")
+
+![alt text](https://github.com/Gustavo3211/tmc-vita/blob/master/readme-images/vita3k.png "VITA3K")
+
 ### How to Build
 
 The Vita port uses **CMake**. You need the **VitaSDK** installed and configured in your environment.
