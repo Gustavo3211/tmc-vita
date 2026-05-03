@@ -5,13 +5,22 @@
 #include "port_runtime_config.h"
 
 
+extern "C" {
 #include <cpu/mode1.h>
 #include <virtuappu.h>
+}
 
 #include <cstdint>
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
+#include <SDL3/SDL.h>
+#include "gba/types.h"
+
+#ifdef __vita__
+static_assert(sizeof(struct OamData) == 8, "OamData size mismatch");
+static_assert(sizeof(struct ObjAffineSrcData) == 6, "ObjAffineSrcData size mismatch");
+#endif
 
 enum class RenderBackend {
     None,

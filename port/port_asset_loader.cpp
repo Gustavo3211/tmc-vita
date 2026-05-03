@@ -195,6 +195,8 @@ std::optional<std::filesystem::path> GetExecutableDirectory() {
     }
     std::error_code ec;
     return std::filesystem::current_path(ec);
+#elif defined(__vita__)
+    return std::filesystem::path("ux0:data/tmc");
 #else
     char buffer[PATH_MAX];
     ssize_t len = readlink("/proc/self/exe", buffer, sizeof(buffer));
@@ -933,8 +935,8 @@ extern "C" void Port_LogAssetLoaderStatus(void) {
     }
 
     AssetLogOnce("startup-root", "selected asset root: %s", PathForLog(gAssetGroupCache.assetsRoot).c_str());
-    AssetLogOnce("startup-gfx", "gfx groups: enabled (%zu groups)", gAssetGroupCache.gfxGroups.size());
-    AssetLogOnce("startup-pal", "palette groups: enabled (%zu groups)", gAssetGroupCache.paletteGroups.size());
+    AssetLogOnce("startup-gfx", "gfx groups: enabled (%u groups)", (unsigned int)gAssetGroupCache.gfxGroups.size());
+    AssetLogOnce("startup-pal", "palette groups: enabled (%u groups)", (unsigned int)gAssetGroupCache.paletteGroups.size());
     AssetLogOnce("startup-sprite",
                  "sprite_ptrs: %s",
                  gAssetGroupCache.hasSpritePtrData ? "enabled via sprite_ptrs.json" : "disabled, ROM fallback");
@@ -944,7 +946,7 @@ extern "C" void Port_LogAssetLoaderStatus(void) {
     AssetLogOnce("startup-area",
                  "area tables: %s",
                  gAssetGroupCache.hasAreaData ? "enabled via area_*.json" : "disabled, ROM fallback");
-    AssetLogOnce("startup-map-assets", "registered map asset files: %zu", gAssetGroupCache.mapAssetFiles.size());
+    AssetLogOnce("startup-map-assets", "registered map asset files: %u", (unsigned int)gAssetGroupCache.mapAssetFiles.size());
 }
 
 enum GfxLoadDecision {

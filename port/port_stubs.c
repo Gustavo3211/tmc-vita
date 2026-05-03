@@ -41,6 +41,7 @@ u32 GetNextScriptCommandHalfword(u16* ptr) {
         if (gRomData && addr >= (uintptr_t)gRomData && addr < (uintptr_t)(gRomData + gRomSize)) {
             /* Valid ROM pointer — OK */
         } else {
+#if defined(__LP64__) || defined(_WIN64)
             /* Not in ROM — check if it's a plausible native pointer.
              * On 64-bit Windows, user-mode addresses have upper 16+ bits zero.
              * If upper 32 bits are non-zero and it's not a valid heap/stack range, reject it. */
@@ -50,6 +51,7 @@ u32 GetNextScriptCommandHalfword(u16* ptr) {
                         (void*)ptr);
                 return 0xFFFF;
             }
+#endif
         }
     }
 #endif
