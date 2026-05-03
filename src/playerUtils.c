@@ -72,7 +72,7 @@ void sub_0807A750(u32, u32, const u8*, u32);
 
 extern ItemDefinition gItemDefinitions[];
 
-extern ItemBehavior* (*const gCreateItemsFuncs[])(Item);
+extern ItemBehavior* (*const gCreateItemsFuncs[])(u32);
 
 extern void UnregisterInteractTile(u32, u32);
 
@@ -236,7 +236,7 @@ void UpdateActiveItems(PlayerEntity* this) {
     }
 }
 
-void CreateItemEquippedAtSlot(EquipSlot equipSlot) {
+void CreateItemEquippedAtSlot(u32 equipSlot) {
     if (equipSlot == EQUIP_SLOT_A) {
         CreateItemIfInputMatches(gSave.stats.equipped[SLOT_A], INPUT_USE_ITEM1, TRUE);
     } else {
@@ -338,17 +338,17 @@ bool32 IsTryingToPickupObject(void) {
     }
 }
 
-ItemBehavior* CreateItemNone(Item);
-ItemBehavior* CreateItem1(Item);
-ItemBehavior* CreateItem2(Item);
-ItemBehavior* CreateItem3(Item);
-ItemBehavior* CreateItem4(Item);
-ItemBehavior* CreateItem5(Item);
-ItemBehavior* (*const gCreateItemsFuncs[])(Item) = {
+ItemBehavior* CreateItemNone(u32);
+ItemBehavior* CreateItem1(u32);
+ItemBehavior* CreateItem2(u32);
+ItemBehavior* CreateItem3(u32);
+ItemBehavior* CreateItem4(u32);
+ItemBehavior* CreateItem5(u32);
+ItemBehavior* (*const gCreateItemsFuncs[])(u32) = {
     CreateItemNone, CreateItem1, CreateItem2, CreateItem3, CreateItem4, CreateItem5,
 };
 
-ItemBehavior* CreateItem(Item itemId) {
+ItemBehavior* CreateItem(u32 itemId) {
     if (((((gPlayerState.queued_action == PLAYER_ROLL) && (itemId != ITEM_TRY_PICKUP_OBJECT)) ||
           (((gPlayerState.flags & (PL_ROLLING | PL_CLONING)) != 0 && (ITEM_FOURSWORD < itemId)))) ||
          ((((gPlayerState.jump_status != 0 || (gPlayerEntity.base.z.WORD != 0)) && (ITEM_FOURSWORD < itemId)) ||
@@ -361,11 +361,11 @@ ItemBehavior* CreateItem(Item itemId) {
     }
 }
 
-ItemBehavior* CreateItemNone(Item itemId) {
+ItemBehavior* CreateItemNone(u32 itemId) {
     return NULL;
 }
 
-ItemBehavior* CreateItem1(Item itemId) {
+ItemBehavior* CreateItem1(u32 itemId) {
     if (gActiveItems[ACTIVE_ITEM_1].priority == 0) {
         return &gActiveItems[ACTIVE_ITEM_1];
     } else if (gActiveItems[ACTIVE_ITEM_2].priority == 0) {
@@ -375,7 +375,7 @@ ItemBehavior* CreateItem1(Item itemId) {
     }
 }
 
-ItemBehavior* CreateItem2(Item itemId) {
+ItemBehavior* CreateItem2(u32 itemId) {
     if (((gPlayerState.heldObject == 0) && (itemId != gActiveItems[ACTIVE_ITEM_1].behaviorId)) &&
         (itemId != gActiveItems[ACTIVE_ITEM_2].behaviorId)) {
         return CreateItem1(itemId);
@@ -384,7 +384,7 @@ ItemBehavior* CreateItem2(Item itemId) {
     }
 }
 
-ItemBehavior* CreateItem3(Item itemId) {
+ItemBehavior* CreateItem3(u32 itemId) {
     if (gPlayerState.heldObject == 0) {
         if ((gPlayerState.jump_status & 0x20) == 0 &&
             gItemDefinitions[itemId].priority >= gActiveItems[ACTIVE_ITEM_0].priority) {
@@ -398,7 +398,7 @@ ItemBehavior* CreateItem3(Item itemId) {
     return NULL;
 }
 
-ItemBehavior* CreateItem4(Item itemId) {
+ItemBehavior* CreateItem4(u32 itemId) {
     if (gSave.stats.bombCount != 0 && gPlayerState.heldObject == 0 && gActiveItems[ACTIVE_ITEM_0].priority == 0) {
         return &gActiveItems[ACTIVE_ITEM_0];
     } else {
@@ -406,7 +406,7 @@ ItemBehavior* CreateItem4(Item itemId) {
     }
 }
 
-ItemBehavior* CreateItem5(Item itemId) {
+ItemBehavior* CreateItem5(u32 itemId) {
     ItemBehavior* activeItem;
     u32 index;
 
@@ -1399,7 +1399,7 @@ void AddInteractableWhenBigFuser(Entity* ent, KinstoneId kinstoneId) {
     AddInteractableObject(ent, 1, kinstoneId);
 }
 
-void AddInteractableFuser(Entity* ent, KinstoneId kinstoneId) {
+void AddInteractableFuser(Entity* ent, u32 kinstoneId) {
     AddInteractableObject(ent, 2, kinstoneId);
 }
 
@@ -1407,7 +1407,7 @@ void AddInteractableAsMinishObject(Entity* ent) {
     AddInteractableObject(ent, 7, 0);
 }
 
-void AddInteractableAsMinishFuser(Entity* ent, KinstoneId kinstoneId) {
+void AddInteractableAsMinishFuser(Entity* ent, u32 kinstoneId) {
     AddInteractableObject(ent, 7, kinstoneId);
 }
 
@@ -1466,7 +1466,7 @@ void SetInteractableObjectCollision(Entity* arg0, u32 ignoreLayer, u32 interactD
     }
 }
 
-s32 AddInteractableObject(Entity* entity, InteractionType type, KinstoneId kinstoneId) {
+s32 AddInteractableObject(Entity* entity, u32 type, u32 kinstoneId) {
     s32 index;
     entity->interactType = INTERACTION_NONE;
     index = GetInteractableObjectIndex(entity);
