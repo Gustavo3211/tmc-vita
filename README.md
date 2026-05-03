@@ -78,9 +78,7 @@ The Vita port uses **CMake**. You need the **VitaSDK** installed and configured 
 ```text
 ux0:data/tmc/
 ├── baserom.gba       # USA/EU ROM (Required)
-├── rom_gaps.bin      # Optional (helps with asset loading)
-├── assets/           # Extracted assets (follow PC port instructions to generate these)
-└── tmc.sav           # Save file (auto-generated)
+└── assets/           # Extracted assets (follow PC port instructions to generate these)
 ```
 
 The PC port currently supports **USA** and **EU**.
