@@ -28,6 +28,55 @@ A copy of the original game is required to build either the ROM or the PC port.
 | USA Demo | `baserom_demo_usa.gba` | `63fcad218f9047b6a9edbb68c98bd0dec322d7a1` |
 | JP Demo  | `baserom_demo_jp.gba`  | `9cdb56fa79bba13158b81925c1f3641251326412` |
 
+The PSVITA port currently supports **USA** and **EU**.
+## PSVITA Port
+> [!IMPORTANT]
+> ## I DO NOT RECOMMEND YOU TO RUN ON REAL HARDWARE!!!! 
+> I have low to no knowledge about the Vita hardware, so I really don't know how this code operates under the hood there! Use at your own risk. The game boots, but it is currently very slow.
+> (yes, there is no audio yet.)
+> 
+> it works on Vita3k and runs better there.
+
+### How to Build
+
+The Vita port uses **CMake**. You need the **VitaSDK** installed and configured in your environment.
+
+1. **Prepare the build directory**:
+   ```bash
+   mkdir build_vita && cd build_vita
+   ```
+
+2. **Configure with CMake**:
+   ```bash
+   # Default build (with Persistent Logging enabled)
+   cmake .. -DCMAKE_TOOLCHAIN_FILE=$VITASDK/share/vita.toolchain.cmake
+   
+   # Recommended build for performance or running on real hardware (Logging OFF)
+   cmake .. -DCMAKE_TOOLCHAIN_FILE=$VITASDK/share/vita.toolchain.cmake -DVITA_PERSISTENT_LOGS=OFF
+   ```
+
+3. **Compile**:
+   ```bash
+   make -j$(nproc)
+   ```
+   After completion, you will find `tmc.vpk` in the build folder.
+
+> [!IMPORTANT]
+> **About Logging**: By default, the game writes logs to `ux0:data/tmc/tmc_log.txt`. This is useful for debugging but can slow down the game (SD card I/O). If you just want to play, build it with: `-DVITA_PERSISTENT_LOGS=OFF`.
+
+### How to Run
+
+1. Install `tmc.vpk` on your Vita.
+2. Prepare the data folder in `ux0:data/tmc/`. You must provide the following files:
+
+```text
+ux0:data/tmc/
+├── baserom.gba       # USA/EU ROM (Required)
+├── rom_gaps.bin      # Optional (helps with asset loading)
+├── assets/           # Extracted assets (follow PC port instructions to generate these)
+└── tmc.sav           # Save file (auto-generated)
+```
+
 The PC port currently supports **USA** and **EU**.
 
 ## PC Port — Pre-built releases (recommended)
