@@ -206,7 +206,7 @@ u32 getItemMetaDataGetTextIndex(s32 itemIndex) {
     return ptr[2];
 }
 
-u32 IsMinishItem(u32 param_1) {
+u32 IsMinishItem(Item param_1) {
     const ItemMetaData* ptr1 = gItemMetaData;
     u8* ptr = (u8*)&((ptr1)[param_1]);
     return ptr[3] & 1;
@@ -258,7 +258,7 @@ void ModArrows(s32 arrows) {
  * 1: B
  * 2: Not equipped
  */
-EquipSlot IsItemEquipped(u32 itemId) {
+EquipSlot IsItemEquipped(Item itemId) {
     EquipSlot equipSlot;
 
     if (itemId == gSave.stats.equipped[SLOT_A]) {

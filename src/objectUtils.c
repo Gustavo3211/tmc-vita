@@ -125,7 +125,7 @@ u32 LoadObjectSprite(Entity* this, s32 type, const ObjectDefinition* definition)
     return 2;
 }
 
-Entity* CreateObject(u32 subtype, u32 form, u32 type2) {
+Entity* CreateObject(Object subtype, u32 form, u32 type2) {
     Entity* entity = GetEmptyEntity();
     if (entity != NULL) {
         entity->kind = OBJECT;
@@ -137,7 +137,7 @@ Entity* CreateObject(u32 subtype, u32 form, u32 type2) {
     return entity;
 }
 
-Entity* CreateObjectWithParent(Entity* parent, u32 subtype, u32 form, u32 type2) {
+Entity* CreateObjectWithParent(Entity* parent, Object subtype, u32 form, u32 type2) {
     Entity* entity = CreateObject(subtype, form, type2);
     if (entity != NULL) {
         entity->parent = parent;
@@ -147,7 +147,7 @@ Entity* CreateObjectWithParent(Entity* parent, u32 subtype, u32 form, u32 type2)
     return entity;
 }
 
-Entity* CreateFx(Entity* parentEnt, u32 form, u32 parameter) {
+Entity* CreateFx(Entity* parentEnt, Effect form, u32 parameter) {
     return CreateObjectWithParent(parentEnt, SPECIAL_FX, form, parameter);
 }
 

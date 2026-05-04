@@ -43,7 +43,16 @@ extern void sub_0805F8E4(u32 idx, WStruct* data);
 u32 sub_0805F7DC(u32, WStruct*);
 u32 GetFontStrWith(Token*, u32);
 
-static void StatusUpdate(u32 status);
+typedef enum {
+    MSG_IDLE,
+    MSG_INIT,
+    MSG_UPDATE,
+    MSG_OPEN,
+    MSG_CLOSE,
+    MSG_DIE,
+} MessageStatus;
+
+static void StatusUpdate(MessageStatus status);
 
 /*static*/ u16 RunTextCommand(TextRender* this);
 /*static*/ void PaletteChange(TextRender* this, u32 id);
@@ -69,14 +78,6 @@ static u32 MsgUpdate(void);
 /*static*/ u32 MsgOpen(void);
 static u32 MsgClose(void);
 static u32 MsgDie(void);
-typedef enum {
-    MSG_IDLE,
-    MSG_INIT,
-    MSG_UPDATE,
-    MSG_OPEN,
-    MSG_CLOSE,
-    MSG_DIE,
-} MessageStatus;
 
 typedef void (*TextRenderFunction)(TextRender*);
 static void TextDispInit(TextRender* this);

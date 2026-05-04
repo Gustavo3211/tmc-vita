@@ -47,7 +47,7 @@ void ResetScreenRegs(void);
 void MessageFromFusionTarget(u32);
 void sub_0801E24C(s32, s32);
 void sub_0801E290(u32, u32, u32);
-s32 GetIndexInKinstoneBag(u32);
+s32 GetIndexInKinstoneBag(KinstoneId);
 
 extern u32 sub_0807CB24(u32, u32);
 
