@@ -665,7 +665,6 @@ void CreateEzloHint(u32, u32);
 
 // game.c
 /** @see Item */
-/*EquipSlot*/ u32 IsItemEquipped(u32 itemId);
 /** @see Item */
 u32 GetInventoryValue(u32);
 /** @see Item */

@@ -2,6 +2,7 @@
 #define COMMON_H
 
 #include "global.h"
+#include "kinstone.h"
 
 struct Entity_;
 
@@ -115,14 +116,14 @@ void zFree(void* ptr);
 void DispReset(bool32 refresh);
 
 u32 CheckPlayerProximity(u32, u32, u32, u32);
-u32 CheckKinstoneFused(u32);
+u32 CheckKinstoneFused(KinstoneId);
 void sub_0801E1EC(u32, u32, u32);
 void sub_0801DD58(u32, u32);
 void sub_0801E1B8(u32, u32);
-void AddKinstoneToBag(u32);
+void AddKinstoneToBag(KinstoneId);
 void InitializeFuseInfo(struct Entity_* entity, u32 textIndex, u32 cancelledTextIndex, u32 fusingTextIndex);
 u32 PerformFuseAction(void);
-bool32 CheckFusionMapMarkerDisabled(u32);
+bool32 CheckFusionMapMarkerDisabled(KinstoneId);
 u32 sub_0801DB94(void);
 u32 GetRandomSharedFusion(u8*);
 

@@ -5,30 +5,6 @@
 #include "entity.h"
 #include "player.h"
 
-extern u32 GiveItem(u32, u32);
-extern u32 CreateRandomItemDrop(Entity*, u32);
-extern void DisableRandomDrops();
-extern void EnableRandomDrops(void);
-extern u32 IsMinishItem(u32);
-
-void CreateItemEntity(u32, u32, u32);
-extern void ExecuteItemFunction(ItemBehavior* this, u32 index);
-
-extern void ItemDebug(ItemBehavior*, u32);
-extern void ItemSword(ItemBehavior*, u32);
-extern void ItemBomb(ItemBehavior*, u32);
-extern void ItemBow(ItemBehavior*, u32);
-extern void ItemBoomerang(ItemBehavior*, u32);
-extern void ItemShield(ItemBehavior*, u32);
-extern void ItemLantern(ItemBehavior*, u32);
-extern void ItemGustJar(ItemBehavior*, u32);
-extern void ItemPacciCane(ItemBehavior*, u32);
-extern void ItemMoleMitts(ItemBehavior*, u32);
-extern void ItemRocsCape(ItemBehavior*, u32);
-extern void ItemPegasusBoots(ItemBehavior*, u32);
-extern void ItemOcarina(ItemBehavior*, u32);
-extern void ItemTryPickupObject(ItemBehavior*, u32);
-extern void ItemJarEmpty(ItemBehavior*, u32);
 
 typedef enum {
     ITEM_NONE,
@@ -164,6 +140,32 @@ typedef enum {
     EQUIP_SLOT_B,
     EQUIP_SLOT_NONE,
 } EquipSlot;
+
+extern u32 GiveItem(Item, u32);
+extern u32 CreateRandomItemDrop(Entity*, u32);
+extern void DisableRandomDrops();
+extern void EnableRandomDrops(void);
+extern u32 IsMinishItem(Item);
+extern EquipSlot IsItemEquipped(Item);
+
+void CreateItemEntity(u32, u32, u32);
+extern void ExecuteItemFunction(ItemBehavior* this, u32 index);
+
+extern void ItemDebug(ItemBehavior*, u32);
+extern void ItemSword(ItemBehavior*, u32);
+extern void ItemBomb(ItemBehavior*, u32);
+extern void ItemBow(ItemBehavior*, u32);
+extern void ItemBoomerang(ItemBehavior*, u32);
+extern void ItemShield(ItemBehavior*, u32);
+extern void ItemLantern(ItemBehavior*, u32);
+extern void ItemGustJar(ItemBehavior*, u32);
+extern void ItemPacciCane(ItemBehavior*, u32);
+extern void ItemMoleMitts(ItemBehavior*, u32);
+extern void ItemRocsCape(ItemBehavior*, u32);
+extern void ItemPegasusBoots(ItemBehavior*, u32);
+extern void ItemOcarina(ItemBehavior*, u32);
+extern void ItemTryPickupObject(ItemBehavior*, u32);
+extern void ItemJarEmpty(ItemBehavior*, u32);
 
 /** Function used to create the item. */
 typedef enum {

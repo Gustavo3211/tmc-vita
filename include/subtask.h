@@ -89,7 +89,8 @@ void sub_080A4DB8(u32);
 void sub_080A6290(void);
 void sub_080A66D0();
 void sub_080A67C4(u32);
-void ShowAreaName(u32 id, u32 type);
+#include "windcrest.h"
+void ShowAreaName(WindcrestID id, u32 type);
 void sub_080A698C(u32 param_1, u32 param_2, u32 param_3, u32 param_4);
 u32 sub_080A6F40();
 s32 sub_080A69E0();
